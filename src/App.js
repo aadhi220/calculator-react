@@ -4,6 +4,7 @@ import Display from "./components/Display/Display";
 import Keypad from "./components/Keypad/Keypad";
 
 function App() {
+  const[darkMode,setDarkMode]=useState(false)
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
 
@@ -25,16 +26,26 @@ function App() {
     }
   };
 
+  
+
   return (
-    <div className="main">
-      <div className="container">
-        <h4 className="">Casio</h4>
+    <div className="main " style={darkMode ?{backgroundColor:"rgb(15 23 42)"}:{}}>
+      <div className="container " style={darkMode ?{backgroundColor:"rgb(43, 43, 43)"}:{}}>
+       <div style={{display:'flex',width:'100%',justifyContent:'space-between',alignItems:'center'}}> <h4 style={darkMode ?{color:"aliceblue"}:{}}>Casio</h4> <div  onClick={()=>setDarkMode(!darkMode)} className=" w-[2rem]">
+              
+              {
+                darkMode ?   <i class="fa-solid fa-sun  fa-xl " style={{color:'aliceblue'}}></i>
+                :  <i class="fa-solid fa-moon  fa-xl " style={{color:''}}></i>
+              }
+                
+                
+                </div></div>
         <div className="" style={{ margin: "1rem 0rem" }}>
-          <Display input={input} result={result} />
+          <Display input={input} result={result} darkMode={darkMode} />
         </div>
         <div style={{ overflow: "hidden", borderRadius: "10px" }}>
           <div>
-            <Keypad handleButton={handleButton} />
+            <Keypad handleButton={handleButton} darkMode={darkMode}/>
           </div>
         </div>
       </div>
